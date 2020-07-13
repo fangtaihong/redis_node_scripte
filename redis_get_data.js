@@ -21,7 +21,7 @@ for (var i = 0; i < iter; i++) {
 		if ('nil' == data) {
 			console.log('Get 결과: 존재하지 않는 Key');
 		} else {
-			console.log('Get 결과: ', index + 1, err);
+			console.log('Get 결과: ', iter + 1, err);
 		}
 	}) 
 }
