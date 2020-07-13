@@ -7,7 +7,7 @@ DOMAIN=$1
 PORT=$2
 PW=$3
 KEY=$4
-ITER = $5
+ITER=$5
 
 npm install redis --save
 npm install shelljs --save
