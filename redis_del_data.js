@@ -9,7 +9,6 @@ const iter = args[6];
 
 var redis = require('redis');
 var shell = require('shelljs');
-var randomString = require('random-string');
 
 var client = redis.createClient({host: domain, port: port}); 
 client.auth(pw); 
