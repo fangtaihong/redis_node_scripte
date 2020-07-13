@@ -1,4 +1,4 @@
-// redis 연결하여 key 조회
+// redis 연결하여 key iter번 조회
 
 const args = process.argv;
 const domain = args[2];
@@ -9,7 +9,6 @@ const iter = args[6];
 
 var redis = require('redis');
 var shell = require('shelljs');
-var randomString = require('random-string');
 
 var client = redis.createClient({host: domain, port: port}); 
 client.auth(pw); 

@@ -1,4 +1,4 @@
-// redis 연결하여 1M value 생성
+// redis 연결하여 모든 key 조회
 
 const args = process.argv;
 const domain = args[2];
@@ -7,7 +7,6 @@ const pw = args[4];
 
 var redis = require('redis');
 var shell = require('shelljs');
-var randomString = require('random-string');
 
 var client = redis.createClient({host: domain, port: port}); 
 client.auth(pw); 
@@ -16,9 +15,9 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 	  .on('connect', () => console.log('------ Redis connection succeed ------')); 
 
 client.keys('*', function (err, keys) {
-  if (err) return console.log(err);
-  for(var i = 0, len = keys.length; i < len; i++) {
-    console.log(keys[i]);
-  }
+	if (err) return console.log(err);
+	for(var i = 0, len = keys.length; i < len; i++) {
+		console.log(keys[i]);
+	}
 });
 client.quit();

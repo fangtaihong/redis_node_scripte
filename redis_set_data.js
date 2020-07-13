@@ -1,4 +1,4 @@
-// redis 연결하여 1M value 생성
+// redis 연결하여 10M value인 key iter개 생성
 
 const args = process.argv;
 const domain = args[2];
@@ -22,7 +22,7 @@ var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
 	client.set(key + i, valueData, function (err, result) {
-		   console.log('Set 결과: ', err, result);
+		console.log('Set 결과: ', err, result);
 	});
 }
 client.quit();

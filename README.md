@@ -16,6 +16,6 @@ redis_get_all_key.js [domain] [port] [pw]
 # 10MB value key iter번 조회
 redis_set_data.js [domain] [port] [pw] [key] [iter]
 
-# 단일 key 삭제
-redis_del_data.js [domain] [port] [pw] [key]
+# key iter개 삭제
+redis_del_data.js [domain] [port] [pw] [key] [iter]
 ```
