@@ -17,7 +17,7 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 client.keys('*', function (err, keys) {
 	if (err) return console.log(err);
 	for(var i = 0, len = keys.length; i < len; i++) {
-		console.log(keys[i]);
+		console.log(i + 1, keys[i]);
 	}
 });
 client.quit();
