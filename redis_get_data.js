@@ -17,11 +17,12 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 	  .on('connect', () => console.log('------ Redis connection succeed ------')); 
 
 for (var i = 0; i < iter; i++) {
+	var num = i + 1;
 	client.get(key, function (err, data) { 
 		if ('nil' == data) {
 			console.log('Get 결과: 존재하지 않는 Key');
 		} else {
-			console.log(i + 1, ' Get 결과: ', err);
+			console.log(num, 'Get 결과:', err);
 		}
 	}) 
 }

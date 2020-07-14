@@ -21,8 +21,9 @@ var num = 10 * 1024 * 1024;
 var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
+	var num = i + 1;
 	client.set(key + i, valueData, function (err, result) {
-		console.log(i + 1, ' Set 결과: ', err, result);
+		console.log(num, 'Set 결과:', err, result);
 	});
 }
 client.quit();
