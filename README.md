@@ -18,4 +18,7 @@ redis_set_data.js [domain] [port] [pw] [key] [iter]
 
 # key iter개 삭제
 redis_del_data.js [domain] [port] [pw] [key] [iter]
+
+# expire key 설정
+redis_set_expire_key.js [domain] [port] [pw] [key] [value] [expire]
 ```
