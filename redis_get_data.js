@@ -18,11 +18,10 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 
 for (var i = 0; i < iter; i++) {
 	client.get(key, function (err, data) { 
-		var j = i + 1;
-		if ('nil' == data) {
+		if (data == null) {
 			console.log('Get 결과: 존재하지 않는 Key');
 		} else {
-			console.log(j, 'Get 결과:', data, err);
+			console.log('Get 결과:', err);
 		}
 	}) 
 }
