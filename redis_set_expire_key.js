@@ -10,7 +10,6 @@ const seconds = args[7];
 
 var redis = require('redis');
 var shell = require('shelljs');
-var randomString = require('random-string');
 
 var client = redis.createClient({host: domain, port: port}); 
 client.auth(pw); 
