@@ -22,7 +22,7 @@ var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
 	client.set(key + i, valueData, function (err, result) {
-		console.log(i + 1, 'Set 결과:', err, result);
+		console.log('Set 결과:', err, result);
 	});
 }
 client.quit();
