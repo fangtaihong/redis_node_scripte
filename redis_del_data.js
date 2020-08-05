@@ -11,7 +11,7 @@ var redis = require('redis');
 var shell = require('shelljs');
 
 var client = redis.createClient({host: domain, port: port}); 
-client.auth(pw); 
+if ("not" != pw) {client.auth(pw);} 
 client.on('error', err => console.log('------ Redis connection failed ------' + err))
 	  .on('error', err => shell.exit(1)) 
 	  .on('connect', () => console.log('------ Redis connection succeed ------')); 
