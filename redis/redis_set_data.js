@@ -1,24 +1,30 @@
-// redis 연결하여 모든 key 조회
+// redis 연결하여 10M value인 key iter개 생성
 
 const args = process.argv;
 const domain = args[2];
 const port = args[3];
 const pw = args[4];
+const key = args[5];
+const iter = args[6];
 
 var redis = require('redis');
 var shell = require('shelljs');
+var randomString = require('random-string');
 
 var client = redis.createClient({host: domain, port: port}); 
-client.auth(pw); 
+if (null != pw) {
+	client.auth(pw); 
+} 
 client.on('error', err => console.log('------ Redis connection failed ------' + err))
 	  .on('error', err => shell.exit(1)) 
 	  .on('connect', () => console.log('------ Redis connection succeed ------')); 
 
-client.keys('*', function (err, keys) {
-	if (err) return console.log(err);
-	for(var i = 0, len = keys.length; i < len; i++) {
-		var num = i + 1;
-		console.log(num, keys[i]);
-	}
-});
+var num = 10 * 1024 * 1024;
+var valueData = randomString({ length: num, numeric: false });
+
+for (var i = 0; i < iter; i++) {
+	client.set(key + i, valueData, function (err, result) {
+		console.log('Set 결과:', err, result);
+	});
+}
 client.quit();
