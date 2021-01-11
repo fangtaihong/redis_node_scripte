@@ -29,8 +29,9 @@ for (var i = 0; i < iter; i++) {
 				console.log("It means OOM. exit the system.");
 				process.exit(1);
 			}
-		} else {
-			console.log("Set key, value: ", key + i, valueData);
+			else {
+				console.log("Set key, value: ", key + i, valueData);
+			}
 		}
 	})
 }
