@@ -1,4 +1,5 @@
 // redis 연결하여 10M value인 key iter개 생성
+const { ReplyError, InterruptError } = require('redis-errors');
 
 const args = process.argv;
 const domain = args[2];
@@ -21,8 +22,16 @@ var num = 10 * 1024 * 1024;
 var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
-	client.set(key + i, valueData, function (err, result) {
-		console.log('Set 결과:', err, result);
-	});
+	client.set(key + i, valueData, function(err, result) {
+		// ReplyError로 리턴받는 경우 OOM 케이스만 발견되어 OOM으로 추정하고 시스템 종료
+		if (err) {
+			if (err instanceof ReplyError) {
+				console.log("It means OOM. exit the system.");
+				process.exit(1);
+			}
+		} else {
+			console.log("Set key, value: ", key + i, valueData);
+		}
+	})
 }
 client.quit();
