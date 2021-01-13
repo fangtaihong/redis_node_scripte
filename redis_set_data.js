@@ -23,16 +23,14 @@ var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
 	client.set(key + i, valueData, function(err, result) {
-		// ReplyError로 리턴받는 경우 OOM 케이스만 발견되어 OOM으로 추정하고 시스템 종료
-		if (err) {
-			if (err instanceof ReplyError) {
-				console.log("It means OOM. exit the system.");
-				process.exit(1);
-			}
-			else {
-				console.log("Set key, value: ", key + i);
-			}
+		if (err instanceof ReplyError) {
+			console.log("It means OOM. exit the system.");
+			client.end(true);
+			process.exit(1);
 		}
-	})
+		else {
+			console.log("Set key: ", err, result);
+		}		
+	});
 }
 client.quit();
