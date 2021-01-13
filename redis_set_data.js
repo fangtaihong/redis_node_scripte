@@ -1,5 +1,5 @@
 // redis 연결하여 10M value인 key iter개 생성
-const { ReplyError, InterruptError } = require('redis-errors');
+const { ReplyError, RedisError } = require('redis-errors');
 
 const args = process.argv;
 const domain = args[2];
@@ -23,7 +23,7 @@ var valueData = randomString({ length: num, numeric: false });
 
 for (var i = 0; i < iter; i++) {
 	client.set(key + i, valueData, function(err, result) {
-		if (err instanceof ReplyError) {
+		if (err instanceof RedisError) {
 			console.log("It means OOM. exit the system.");
 			client.end(true);
 			process.exit(1);
@@ -31,6 +31,11 @@ for (var i = 0; i < iter; i++) {
 		else {
 			console.log("Set key: ", err, result);
 		}		
+		process.nextTick(function() {
+    			// Force closing the connection while the command did not yet return
+    			client.end(true);
+    			redis.debug_mode = false;
+  		});
 	});
 }
 client.quit();
