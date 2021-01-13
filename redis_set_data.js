@@ -24,7 +24,7 @@ var valueData = randomString({ length: num, numeric: false });
 for (var i = 0; i < iter; i++) {
 	client.set(key + i, valueData, function(err, result) {
 		if (err instanceof RedisError) {
-			console.log("It means OOM. exit the system.");
+			console.log("It means OOM. exit the system.", err);
 			client.end(true);
 			process.exit(1);
 		}
