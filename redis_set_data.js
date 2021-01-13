@@ -30,7 +30,7 @@ for (var i = 0; i < iter; i++) {
 				process.exit(1);
 			}
 			else {
-				console.log("Set key, value: ", key + i, valueData);
+				console.log("Set key, value: ", key + i);
 			}
 		}
 	})
