@@ -28,12 +28,7 @@ for (var i = 0; i < iter; i++) {
 		}
 		else {
 			console.log("Set key: ", err, result);
-		}		
-		process.nextTick(function() {
-    			// Force closing the connection while the command did not yet return
-    			client.end(true);
-    			redis.debug_mode = false;
-  		});
+		}
 	});
 }
 client.quit();
