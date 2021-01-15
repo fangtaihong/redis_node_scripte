@@ -12,7 +12,26 @@ var redis = require('redis');
 var shell = require('shelljs');
 var randomString = require('random-string');
 
-var client = redis.createClient({host: domain, port: port}); 
+//var client = redis.createClient({host: domain, port: port}); 
+const client = redis.createClient({
+	host: domain, 
+	port: port,
+	retry_strategy: function(options) {
+		if (options.error && (options.error.code === "ECONNREFUSED" || options.error.code === "NR_CLOSED")) {
+			console.error('The server refused the connection. Retrying connection...');
+			return 5000;
+		}
+		if (options.total_retry_time > 1000 * 60 * 60) {
+			return new Error("Retry time exhausted");
+		}
+		if (options.attempt > 10) {
+			return undefined;
+		}
+		// reconnect after
+		return Math.min(options.attempt * 100, 3000);
+	},
+});
+
 if ("not" != pw) {client.auth(pw);}  
 client.on('error', err => console.log('------ Redis connection failed ------' + err))
 	  .on('error', err => shell.exit(1)) 
