@@ -16,9 +16,15 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 	  .on('error', err => shell.exit(1)) 
 	  .on('connect', () => console.log('------ Redis connection succeed ------')); 
 
-for (var i = 0; i < iter; i++) {
-	client.del(key + i, function (err, result) {
+if (0 == iter) {
+	client.del(key, function (err, result) {
 		console.log('Del 결과:', err, result);
 	});
+} else {
+	for (var i = 1; i <= iter; i++) {
+		client.del(key + i, function (err, result) {
+			console.log('Del 결과:', err, result);
+		});
+	}
 }
 client.quit();

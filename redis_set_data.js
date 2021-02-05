@@ -40,7 +40,7 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 var num = 10 * 1024 * 1024;
 var valueData = randomString({ length: num, numeric: false });
 
-for (var i = 0; i < iter; i++) {
+for (var i = 1; i <= iter; i++) {
 	client.set(key + i, valueData, function(err, result) {
 		if (err instanceof RedisError) {
 			console.log("Redis error.", err.code);
