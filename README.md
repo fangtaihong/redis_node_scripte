@@ -3,9 +3,15 @@ redis 용량을 채우기 윈한 방법
 ## how to use
 
 ```
-npm install redis --save
+node --version
+npm install
 npm install shelljs --save
+npm install redis --save
+npm install redis-errors --save
 npm install random-string --save
+
+chmod +x ./redis_set_data.sh
+./redis_set_data.sh $DOMAIN $PORT $PW $KEY $ITER
 
 # 10MB value key iter개 설정
 redis_set_data.js [domain] [port] [pw] [key] [iter]
@@ -20,5 +26,8 @@ redis_set_data.js [domain] [port] [pw] [key] [iter]
 redis_del_data.js [domain] [port] [pw] [key] [iter]
 
 # expire key 설정
-redis_set_expire_key.js [domain] [port] [pw] [key] [value] [expire]
+redis_set_expire_key.js [domain] [port] [pw] [key] [value] [expire
+
+# data 유형별 확인
+redis_set_by_db_type.js [domain] [port] [pw]
 ```
