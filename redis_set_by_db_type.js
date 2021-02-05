@@ -37,7 +37,7 @@ client.sadd("setTest", "member", function (err, result) {
 client.hset("hashTest", "id123456", "hashValue", function (err, result) {
 	console.log('hset 결과:', err, result);
 });
-client.hget("hashTest", "id123456",, function (err, result) {
+client.hget("hashTest", "id123456", function (err, result) {
 	console.log('hget 결과:', err, result);
 });
 
