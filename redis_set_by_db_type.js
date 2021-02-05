@@ -17,7 +17,10 @@ client.on('error', err => console.log('------ Redis connection failed ------' + 
 
 
 client.set("stringTest", "qwer1234#$%", function (err, result) {
-	console.log('Set 결과:', err, result);
+	console.log('set 결과:', err, result);
+});
+client.get("stringTest", function (err, result) {
+	console.log('get 결과:', err, result);
 });
 
 client.rpush("listTest", 1, function (err, result) {
@@ -30,8 +33,14 @@ client.llen("listTest", function (err, result) {
 	console.log('llen 결과:', err, result);
 });
 
-client.sadd("setTest", "member", function (err, result) {
+client.sadd("setTest", "member1", function (err, result) {
 	console.log('sadd 결과:', err, result);
+});
+client.sadd("setTest", "member2", function (err, result) {
+	console.log('sadd 결과:', err, result);
+});
+client.smembers("setTest", function (err, result) {
+	console.log('smembers 결과:', err, result);
 });
 
 client.hset("hashTest", "id123456", "hashValue", function (err, result) {

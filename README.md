@@ -26,7 +26,7 @@ redis_set_data.js [domain] [port] [pw] [key] [iter]
 redis_del_data.js [domain] [port] [pw] [key] [iter]
 
 # expire key 설정
-redis_set_expire_key.js [domain] [port] [pw] [key] [value] [expire
+redis_set_expire_key.js [domain] [port] [pw] [key] [value] [expire]
 
 # data 유형별 확인
 redis_set_by_db_type.js [domain] [port] [pw]
