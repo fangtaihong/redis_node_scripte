@@ -1,4 +1,4 @@
-redis 용량을 채우기 윈한 방법
+redis 용량을 채우기 윈한 방법2
 
 ## how to use
 
